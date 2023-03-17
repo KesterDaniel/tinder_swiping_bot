@@ -22,12 +22,12 @@ driver.get("https://tinder.com/")
 
 time.sleep(8)
 
-login_button = driver.find_element(By.XPATH, "//*[@id='s-1432688076']/div/div[1]/div/main/div[1]/div/div/div/div/header/div/div[2]/div[2]/a/div[2]/div[2]")
+login_button = driver.find_element(By.XPATH, "//*[@id='q-586956664']/div/div[1]/div/main/div[1]/div/div/div/div/header/div/div[2]/div[2]/a/div[2]")
 login_button.click()
 
 time.sleep(3)
 
-facebook_login = driver.find_element(By.XPATH, '//*[@id="s-1211347640"]/main/div/div/div[1]/div/div/div[3]/span/div[2]/button/div[2]/div[2]/div')
+facebook_login = driver.find_element(By.XPATH, '//*[@id="q1979629556"]/main/div/div/div[1]/div/div/div[3]/span/div[2]/button/div[2]/div[2]/div/div')
 facebook_login.click()
 
 # switching to facebook login window
@@ -44,5 +44,17 @@ password_field.send_keys(os.getenv("PASSWORD"))
 password_field.send_keys(Keys.RETURN)
 
 driver.switch_to.window(driver.window_handles[0])
+
+time.sleep(10)
+
+allow_location = driver.find_element(By.XPATH, '//*[@id="q1979629556"]/main/div/div/div/div[3]/button[1]/div[2]/div[2]')
+allow_location.click()
+
+allow_notification = driver.find_element(By.XPATH, '//*[@id="q1979629556"]/main/div/div/div/div[3]/button[1]/div[2]/div[2]')
+allow_notification.click()
+
+wait = WebDriverWait(driver, 10)
+element = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="q-586956664"]/div/div[2]/div/div/div[1]/div[2]/button/div[2]')))
+element.click()
 
 
